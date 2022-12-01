@@ -1,0 +1,911 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AccountEntity {
+  company: String
+  createdAt: DateTime
+  description: String
+  email: String!
+  id: ID
+  isActivated: Boolean!
+  permissions: String!
+  secret: String!
+  updatedAt: DateTime
+}
+
+type Activity {
+  activityCode: String!
+  activityLabel: String!
+  createdAt: DateTime!
+  id: String!
+  updatedAt: DateTime!
+}
+
+type ActivitySector {
+  createdAt: DateTime!
+  id: String!
+  sectorCode: String!
+  sectorLabel: String!
+  updatedAt: DateTime!
+}
+
+input CreateAccountInputDto {
+  company: String
+  description: String
+  email: String!
+  isActivated: Boolean
+  permissions: String!
+}
+
+input CreateActivityInputDto {
+  activityCode: String!
+  activityLabel: String!
+}
+
+input CreateActivitySectorInputDto {
+  sectorCode: String!
+  sectorLabel: String!
+}
+
+input CreateHealthProfessionalHasKnowHowInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto!
+  knowHow: UniqueKnowHowInputDto!
+}
+
+input CreateHealthProfessionalHasPharmacistInformationInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto!
+  pharmacistInformation: UniquePharmacistInformationInputDto!
+}
+
+input CreateHealthProfessionalHasProfessionInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto!
+  profession: UniqueProfessionInputDto!
+}
+
+input CreateHealthProfessionalHasStructureInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto!
+  practice: CreatePracticeInputDto!
+  role: CreateRoleInputDto
+  structure: UniqueStructureInputDto!
+}
+
+input CreateHealthProfessionalInputDto {
+  PPIdentifier: String!
+  PPIdentifierType: String
+  civilityCode: String
+  civilityLabel: String
+  firstname: String!
+  lastname: String!
+  nationalPPIdentifier: String!
+  practiceCivilityCode: String
+  practiceCivilityLabel: String
+}
+
+input CreateKnowHowInputDto {
+  healthProfessionalId: String
+  knowHowCode: String!
+  knowHowLabel: String!
+  knowHowTypeCode: String!
+  knowHowTypeLabel: String!
+}
+
+input CreatePharmacistInformationInputDto {
+  healthProfessionalId: String
+  sectionCode: String!
+  sectionLabel: String!
+}
+
+input CreatePracticeInputDto {
+  practiceCode: String!
+  practiceLabel: String!
+}
+
+input CreateProfessionInputDto {
+  healthProfessionalId: String
+  professionCategoryCode: String!
+  professionCategoryLabel: String!
+  professionCode: String!
+  professionLabel: String!
+}
+
+input CreateRegistrationAuthorityInputDto {
+  name: String!
+}
+
+input CreateRoleInputDto {
+  roleCode: String!
+  roleLabel: String!
+}
+
+input CreateStructureInputDto {
+  FINESS: String
+  SIREN: String
+  SIRET: String!
+  activity: CreateActivityInputDto
+  comercialSign: String
+  companyName: String
+  legalFINESS: String
+  oldIdentifiers: [String!]
+  registrationAuthority: CreateRegistrationAuthorityInputDto
+  sector: CreateActivitySectorInputDto
+  technicalId: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+}
+
+type ErrorDatailsDto {
+  messages: [String!]
+}
+
+enum FieldSortEnum {
+  ASC
+  DESC
+}
+
+input GetManyCommonPaginationCursorDto {
+  id: String!
+}
+
+input GetManyCommonPaginationDto {
+  cursor: GetManyCommonPaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input GetManyStringFilterDto {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  notIn: [String!]
+  startsWith: String
+}
+
+input GetManyStringNullableFilterDto {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  notIn: [String!]
+  startsWith: String
+}
+
+type HealthProfessionalArrayEntity {
+  count: Float!
+  data: [HealthProfessionalEntity!]!
+  total: Float!
+}
+
+type HealthProfessionalEntity {
+  PPIdentifier: String!
+  PPIdentifierType: String
+  civilityCode: String
+  civilityLabel: String
+  createdAt: DateTime
+  firstname: String!
+  id: ID
+  knowHow: [HealthProfessionalHasKnowHowEntity!]
+  lastname: String!
+  nationalPPIdentifier: String!
+  practiceCivilityCode: String
+  practiceCivilityLabel: String
+  updatedAt: DateTime
+}
+
+type HealthProfessionalHasKnowHowArrayEntity {
+  count: Float!
+  data: [HealthProfessionalHasKnowHowEntity!]!
+  total: Float!
+}
+
+type HealthProfessionalHasKnowHowEntity {
+  createdAt: DateTime
+  healthProfessionalId: String!
+  id: ID
+  knowHow: KnowHowEntity
+  knowHowId: String!
+  updatedAt: DateTime
+}
+
+input HealthProfessionalHasKnowHowListRelationFilterInputDto {
+  every: HealthProfessionalHasKnowHowWhereInputDto
+  none: HealthProfessionalHasKnowHowWhereInputDto
+  some: HealthProfessionalHasKnowHowWhereInputDto
+}
+
+input HealthProfessionalHasKnowHowPaginationCursorDto {
+  healthProfessionalId: String!
+  id: String!
+  knowHowId: String!
+}
+
+input HealthProfessionalHasKnowHowPaginationDto {
+  cursor: HealthProfessionalHasKnowHowPaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input HealthProfessionalHasKnowHowSortInputDto {
+  createdAt: FieldSortEnum
+  healthProfessionalId: FieldSortEnum
+  id: FieldSortEnum
+  knowHowId: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input HealthProfessionalHasKnowHowWhereInputDto {
+  AND: [HealthProfessionalHasKnowHowWhereInputDto!]
+  NOT: [HealthProfessionalHasKnowHowWhereInputDto!]
+  OR: [HealthProfessionalHasKnowHowWhereInputDto!]
+  createdAt: DateTimeFilter
+  healthProfessionalId: GetManyStringFilterDto
+  id: String
+  knowHow: KnowHowWhereInputDto
+  knowHowId: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type HealthProfessionalHasPharmacistInformationArrayEntity {
+  count: Float!
+  data: [HealthProfessionalHasPharmacistInformationEntity!]!
+  total: Float!
+}
+
+type HealthProfessionalHasPharmacistInformationEntity {
+  createdAt: DateTime
+  healthProfessionalId: String!
+  id: ID
+  pharmacistInformation: PharmacistInformationEntity
+  pharmacistInformationId: String!
+  updatedAt: DateTime
+}
+
+input HealthProfessionalHasPharmacistInformationPaginationCursorDto {
+  healthProfessionalId: String!
+  id: String!
+  pharmacistInformationId: String!
+}
+
+input HealthProfessionalHasPharmacistInformationPaginationDto {
+  cursor: HealthProfessionalHasPharmacistInformationPaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input HealthProfessionalHasPharmacistInformationSortInputDto {
+  createdAt: FieldSortEnum
+  healthProfessionalId: FieldSortEnum
+  id: FieldSortEnum
+  pharmacistInformationId: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input HealthProfessionalHasPharmacistInformationWhereInputDto {
+  AND: [HealthProfessionalHasPharmacistInformationWhereInputDto!]
+  NOT: [HealthProfessionalHasPharmacistInformationWhereInputDto!]
+  OR: [HealthProfessionalHasPharmacistInformationWhereInputDto!]
+  createdAt: DateTimeFilter
+  healthProfessionalId: GetManyStringFilterDto
+  id: String
+  pharmacistInformation: PharmacistInformationWhereInputDto
+  pharmacistInformationId: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type HealthProfessionalHasProfessionArrayEntity {
+  count: Float!
+  data: [HealthProfessionalHasProfessionEntity!]!
+  total: Float!
+}
+
+type HealthProfessionalHasProfessionEntity {
+  createdAt: DateTime
+  healthProfessionalId: String!
+  id: ID
+  profession: ProfessionEntity
+  professionId: String!
+  updatedAt: DateTime
+}
+
+input HealthProfessionalHasProfessionPaginationCursorDto {
+  healthProfessionalId_professionId: UniqueHealthProfessionalId_professionIdInputDto
+  id: String!
+}
+
+input HealthProfessionalHasProfessionPaginationDto {
+  cursor: HealthProfessionalHasProfessionPaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input HealthProfessionalHasProfessionSortInputDto {
+  createdAt: FieldSortEnum
+  healthProfessionalId: FieldSortEnum
+  id: FieldSortEnum
+  professionId: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input HealthProfessionalHasProfessionWhereInputDto {
+  AND: [HealthProfessionalHasProfessionWhereInputDto!]
+  NOT: [HealthProfessionalHasProfessionWhereInputDto!]
+  OR: [HealthProfessionalHasProfessionWhereInputDto!]
+  createdAt: DateTimeFilter
+  healthProfessionalId: GetManyStringFilterDto
+  id: String
+  profession: ProfessionWhereInputDto
+  professionId: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type HealthProfessionalHasStructureArrayEntity {
+  count: Float!
+  data: [HealthProfessionalHasStructureEntity!]!
+  total: Float!
+}
+
+type HealthProfessionalHasStructureEntity {
+  createdAt: DateTime
+  healthProfessionalId: String!
+  id: ID
+  practice: Practice
+  role: Role
+  roleId: String
+  structure: StructureEntity
+  structureId: String!
+  updatedAt: DateTime
+}
+
+input HealthProfessionalHasStructurePaginationCursorDto {
+  healthProfessionalId_structureId_practiceId: UniqueHealthProfessionalId_structureId_practiceIdInputDto
+  id: String!
+}
+
+input HealthProfessionalHasStructurePaginationDto {
+  cursor: HealthProfessionalHasStructurePaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input HealthProfessionalHasStructureSortInputDto {
+  createdAt: FieldSortEnum
+  healthProfessionalId: FieldSortEnum
+  id: FieldSortEnum
+  practiceId: FieldSortEnum
+  roleId: FieldSortEnum
+  structureId: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input HealthProfessionalHasStructureWhereInputDto {
+  AND: [HealthProfessionalHasStructureWhereInputDto!]
+  NOT: [HealthProfessionalHasStructureWhereInputDto!]
+  OR: [HealthProfessionalHasStructureWhereInputDto!]
+  createdAt: DateTimeFilter
+  healthProfessionalId: GetManyStringFilterDto
+  id: String
+  practice: PracticeWhereInputDto
+  role: RoleWhereInputDto
+  structure: StructureWhereInputDto
+  structureId: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+input HealthProfessionalPaginationCursorDto {
+  PPIdentifier: String
+  id: String!
+  nationalPPIdentifier: String
+}
+
+input HealthProfessionalPaginationDto {
+  cursor: HealthProfessionalPaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input HealthProfessionalSortInputDto {
+  PPIdentifier: FieldSortEnum
+  PPIdentifierType: FieldSortEnum
+  civilityCode: FieldSortEnum
+  civilityLabel: FieldSortEnum
+  createdAt: FieldSortEnum
+  firstname: FieldSortEnum
+  id: FieldSortEnum
+  lastname: FieldSortEnum
+  nationalPPIdentifier: FieldSortEnum
+  practiceCivilityCode: FieldSortEnum
+  practiceCivilityLabel: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input HealthProfessionalWhereInputDto {
+  AND: [HealthProfessionalWhereInputDto!]
+  NOT: [HealthProfessionalWhereInputDto!]
+  OR: [HealthProfessionalWhereInputDto!]
+  PPIdentifier: GetManyStringFilterDto
+  PPIdentifierType: GetManyStringNullableFilterDto
+  civilityCode: GetManyStringNullableFilterDto
+  civilityLabel: GetManyStringNullableFilterDto
+  createdAt: DateTimeFilter
+  firstname: GetManyStringFilterDto
+  id: String
+  knowHow: HealthProfessionalHasKnowHowListRelationFilterInputDto
+  lastname: GetManyStringFilterDto
+  nationalPPIdentifier: GetManyStringFilterDto
+  practiceCivilityCode: GetManyStringNullableFilterDto
+  practiceCivilityLabel: GetManyStringNullableFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type KnowHowArrayEntity {
+  count: Float!
+  data: [KnowHowEntity!]!
+  total: Float!
+}
+
+type KnowHowEntity {
+  createdAt: DateTime
+  id: ID
+  knowHowCode: String!
+  knowHowLabel: String!
+  knowHowTypeCode: String!
+  knowHowTypeLabel: String!
+  updatedAt: DateTime
+}
+
+input KnowHowSortInputDto {
+  createdAt: FieldSortEnum
+  id: FieldSortEnum
+  knowHowCode: FieldSortEnum
+  knowHowLabel: FieldSortEnum
+  knowHowTypeCode: FieldSortEnum
+  knowHowTypeLabel: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input KnowHowWhereInputDto {
+  AND: [KnowHowWhereInputDto!]
+  NOT: [KnowHowWhereInputDto!]
+  OR: [KnowHowWhereInputDto!]
+  createdAt: DateTimeFilter
+  id: String
+  knowHowCode: GetManyStringFilterDto
+  knowHowLabel: GetManyStringFilterDto
+  knowHowTypeCode: GetManyStringFilterDto
+  knowHowTypeLabel: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type Mutation {
+  createAccount(account: CreateAccountInputDto!): AccountEntity!
+  createHealthProfessional(healthProfessional: CreateHealthProfessionalInputDto!): HealthProfessionalEntity!
+  createHealthProfessionalHasKnowHow(healthProfessionalHasKnowHow: CreateHealthProfessionalHasKnowHowInputDto!): HealthProfessionalHasKnowHowEntity!
+  createHealthProfessionalHasPharmacistInformation(healthProfessionalHasPharmacistInformation: CreateHealthProfessionalHasPharmacistInformationInputDto!): HealthProfessionalHasPharmacistInformationEntity!
+  createHealthProfessionalHasProfession(healthProfessionalHasProfession: CreateHealthProfessionalHasProfessionInputDto!): HealthProfessionalHasProfessionEntity!
+  createHealthProfessionalHasStructure(healthProfessionalHasStructure: CreateHealthProfessionalHasStructureInputDto!): HealthProfessionalHasStructureEntity!
+  createKnowHow(knowHow: CreateKnowHowInputDto!): KnowHowEntity!
+  createPharmacistInformation(pharmacistInformation: CreatePharmacistInformationInputDto!): PharmacistInformationEntity!
+  createProfession(profession: CreateProfessionInputDto!): ProfessionEntity!
+  createStructure(structure: CreateStructureInputDto!): StructureEntity!
+  deleteAccount(where: UniqueAccountInputDto!): AccountEntity!
+  deleteHealthProfessional(where: UniqueHealthProfessionalInputDto!): HealthProfessionalEntity!
+  deleteHealthProfessionalHasKnowHow(where: UniqueHealthProfessionalHasKnowHowInputDto!): HealthProfessionalHasKnowHowEntity!
+  deleteHealthProfessionalHasPharmacistInformation(where: UniqueHealthProfessionalHasPharmacistInformationInputDto!): HealthProfessionalHasPharmacistInformationEntity!
+  deleteHealthProfessionalHasProfession(where: UniqueHealthProfessionalHasProfessionInputDto!): HealthProfessionalHasProfessionEntity!
+  deleteHealthProfessionalHasStructure(where: UniqueHealthProfessionalHasStructureInputDto!): HealthProfessionalHasStructureEntity!
+  deleteKnowHow(where: UniqueKnowHowInputDto!): KnowHowEntity!
+  deletePharmacistInformation(where: UniquePharmacistInformationInputDto!): PharmacistInformationEntity!
+  deleteProfession(where: UniqueProfessionInputDto!): ProfessionEntity!
+  deleteStructure(where: UniqueStructureInputDto!): StructureEntity!
+  getOrCreateHealthProfessionalHasKnowHow(healthProfessionalHasKnowHow: CreateHealthProfessionalHasKnowHowInputDto!): HealthProfessionalHasKnowHowEntity!
+  getOrCreateHealthProfessionalHasPharmacistInformation(healthProfessionalHasPharmacistInformation: CreateHealthProfessionalHasPharmacistInformationInputDto!): HealthProfessionalHasPharmacistInformationEntity!
+  getOrCreateHealthProfessionalHasProfession(healthProfessionalHasProfession: CreateHealthProfessionalHasProfessionInputDto!): HealthProfessionalHasProfessionEntity!
+  getOrCreateKnowHow(knowHow: CreateKnowHowInputDto!): KnowHowEntity!
+  getOrCreatePharmacistInformation(pharmacistInformation: CreatePharmacistInformationInputDto!): PharmacistInformationEntity!
+  getOrCreateProfession(profession: CreateProfessionInputDto!): ProfessionEntity!
+  updateAccount(account: UpdateAccountInputDto!, where: UniqueAccountInputDto!): AccountEntity!
+  updateHealthProfessional(healthProfessional: UpdateHealthProfessionalInputDto!, where: UniqueHealthProfessionalInputDto!): HealthProfessionalEntity!
+  updateHealthProfessionalHasKnowHow(healthProfessionalHasKnowHow: UpdateHealthProfessionalHasKnowHowInputDto!, where: UniqueHealthProfessionalHasKnowHowInputDto!): HealthProfessionalHasKnowHowEntity!
+  updateHealthProfessionalHasPharmacistInformation(healthProfessionalHasPharmacistInformation: UpdateHealthProfessionalHasPharmacistInformationInputDto!, where: UniqueHealthProfessionalHasPharmacistInformationInputDto!): HealthProfessionalHasPharmacistInformationEntity!
+  updateHealthProfessionalHasProfession(healthProfessionalHasProfession: UpdateHealthProfessionalHasProfessionInputDto!, where: UniqueHealthProfessionalHasProfessionInputDto!): HealthProfessionalHasProfessionEntity!
+  updateHealthProfessionalHasStructure(healthProfessionalHasStructure: UpdateHealthProfessionalHasStructureInputDto!, where: UniqueHealthProfessionalHasStructureInputDto!): HealthProfessionalHasStructureEntity!
+  updateKnowHow(knowHow: UpdateKnowHowInputDto!, where: UniqueKnowHowInputDto!): KnowHowEntity!
+  updateOrCreateHealthProfessional(healthProfessional: CreateHealthProfessionalInputDto!): HealthProfessionalEntity!
+  updateOrCreateHealthProfessionalHasStructure(healthProfessionalHasStructure: CreateHealthProfessionalHasStructureInputDto!): HealthProfessionalHasStructureEntity!
+  updateOrCreateStructure(structure: CreateStructureInputDto!): StructureEntity!
+  updatePharmacistInformation(pharmacistInformation: UpdatePharmacistInformationInputDto!, where: UniquePharmacistInformationInputDto!): PharmacistInformationEntity!
+  updateProfession(profession: UpdateProfessionInputDto!, where: UniqueProfessionInputDto!): ProfessionEntity!
+  updateStructure(structure: UpdateStructureInputDto!, where: UniqueStructureInputDto!): StructureEntity!
+}
+
+type PharmacistInformationArrayEntity {
+  count: Float!
+  data: [PharmacistInformationEntity!]!
+  total: Float!
+}
+
+type PharmacistInformationEntity {
+  createdAt: DateTime
+  id: ID
+  sectionCode: String!
+  sectionLabel: String!
+  updatedAt: DateTime
+}
+
+input PharmacistInformationSortInputDto {
+  createdAt: FieldSortEnum
+  id: FieldSortEnum
+  sectionCode: FieldSortEnum
+  sectionLabel: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input PharmacistInformationWhereInputDto {
+  AND: [PharmacistInformationWhereInputDto!]
+  NOT: [PharmacistInformationWhereInputDto!]
+  OR: [PharmacistInformationWhereInputDto!]
+  createdAt: DateTimeFilter
+  id: String
+  sectionCode: GetManyStringFilterDto
+  sectionLabel: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type Practice {
+  createdAt: DateTime!
+  id: String!
+  practiceCode: String!
+  practiceLabel: String!
+  updatedAt: DateTime!
+}
+
+input PracticeWhereInputDto {
+  AND: [PracticeWhereInputDto!]
+  NOT: [PracticeWhereInputDto!]
+  OR: [PracticeWhereInputDto!]
+  createdAt: DateTimeFilter
+  id: String
+  practiceCode: GetManyStringFilterDto
+  practiceLabel: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type ProfessionArrayEntity {
+  count: Float!
+  data: [ProfessionEntity!]!
+  total: Float!
+}
+
+type ProfessionEntity {
+  createdAt: DateTime
+  id: ID
+  professionCategoryCode: String!
+  professionCategoryLabel: String!
+  professionCode: String!
+  professionLabel: String!
+  updatedAt: DateTime
+}
+
+input ProfessionSortInputDto {
+  createdAt: FieldSortEnum
+  id: FieldSortEnum
+  professionCategoryCode: FieldSortEnum
+  professionCategoryLabel: FieldSortEnum
+  professionCode: FieldSortEnum
+  professionLabel: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input ProfessionWhereInputDto {
+  AND: [ProfessionWhereInputDto!]
+  NOT: [ProfessionWhereInputDto!]
+  OR: [ProfessionWhereInputDto!]
+  createdAt: DateTimeFilter
+  id: String
+  professionCategoryCode: GetManyStringFilterDto
+  professionCategoryLabel: GetManyStringFilterDto
+  professionCode: GetManyStringFilterDto
+  professionLabel: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type Query {
+  getManyHealthProfessional(pagination: HealthProfessionalPaginationDto, sort: HealthProfessionalSortInputDto, where: HealthProfessionalWhereInputDto): HealthProfessionalArrayEntity!
+  getManyHealthProfessionalHasKnowHow(pagination: HealthProfessionalHasKnowHowPaginationDto, sort: HealthProfessionalHasKnowHowSortInputDto, where: HealthProfessionalHasKnowHowWhereInputDto): HealthProfessionalHasKnowHowArrayEntity!
+  getManyHealthProfessionalHasPharmacistInformation(pagination: HealthProfessionalHasPharmacistInformationPaginationDto, sort: HealthProfessionalHasPharmacistInformationSortInputDto, where: HealthProfessionalHasPharmacistInformationWhereInputDto): HealthProfessionalHasPharmacistInformationArrayEntity!
+  getManyHealthProfessionalHasProfession(pagination: HealthProfessionalHasProfessionPaginationDto, sort: HealthProfessionalHasProfessionSortInputDto, where: HealthProfessionalHasProfessionWhereInputDto): HealthProfessionalHasProfessionArrayEntity!
+  getManyHealthProfessionalHasStructure(pagination: HealthProfessionalHasStructurePaginationDto, sort: HealthProfessionalHasStructureSortInputDto, where: HealthProfessionalHasStructureWhereInputDto): HealthProfessionalHasStructureArrayEntity!
+  getManyKnowHow(pagination: GetManyCommonPaginationDto, sort: KnowHowSortInputDto, where: KnowHowWhereInputDto): KnowHowArrayEntity!
+  getManyPharmacistInformation(pagination: GetManyCommonPaginationDto, sort: PharmacistInformationSortInputDto, where: PharmacistInformationWhereInputDto): PharmacistInformationArrayEntity!
+  getManyProfession(pagination: GetManyCommonPaginationDto, sort: ProfessionSortInputDto, where: ProfessionWhereInputDto): ProfessionArrayEntity!
+  getManyStructure(pagination: StructurePaginationDto, sort: StructureSortInputDto, where: StructureWhereInputDto): StructureArrayEntity!
+  getUniqueAccount(where: UniqueAccountInputDto!): AccountEntity!
+  getUniqueHealthProfessional(where: UniqueHealthProfessionalInputDto!): HealthProfessionalEntity!
+  getUniqueHealthProfessionalHasKnowHow(where: UniqueHealthProfessionalHasKnowHowInputDto!): HealthProfessionalHasKnowHowEntity!
+  getUniqueHealthProfessionalHasPharmacistInformation(where: UniqueHealthProfessionalHasPharmacistInformationInputDto!): HealthProfessionalHasPharmacistInformationEntity!
+  getUniqueHealthProfessionalHasProfession(where: UniqueHealthProfessionalHasProfessionInputDto!): HealthProfessionalHasProfessionEntity!
+  getUniqueHealthProfessionalHasStructure(where: UniqueHealthProfessionalHasStructureInputDto!): HealthProfessionalHasStructureEntity!
+  getUniqueKnowHow(where: UniqueKnowHowInputDto!): KnowHowEntity!
+  getUniquePharmacistInformation(where: UniquePharmacistInformationInputDto!): PharmacistInformationEntity!
+  getUniqueProfession(where: UniqueProfessionInputDto!): ProfessionEntity!
+  getUniqueStructure(where: UniqueStructureInputDto!): StructureEntity!
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+type RegistrationAuthority {
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Role {
+  createdAt: DateTime!
+  id: String!
+  roleCode: String!
+  roleLabel: String!
+  updatedAt: DateTime!
+}
+
+input RoleWhereInputDto {
+  AND: [RoleWhereInputDto!]
+  NOT: [RoleWhereInputDto!]
+  OR: [RoleWhereInputDto!]
+  createdAt: DateTimeFilter
+  id: String
+  roleCode: GetManyStringFilterDto
+  roleLabel: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
+}
+
+type StructureArrayEntity {
+  count: Float!
+  data: [StructureEntity!]!
+  total: Float!
+}
+
+type StructureEntity {
+  FINESS: String
+  SIREN: String
+  SIRET: String!
+  activity: Activity
+  activityId: String
+  comercialSign: String
+  companyName: String
+  createdAt: DateTime
+  id: ID
+  legalFINESS: String
+  oldIdentifiers: [String!]!
+  registrationAuthority: RegistrationAuthority
+  registrationAuthorityId: String
+  sector: ActivitySector
+  sectorId: String
+  technicalId: String
+  updatedAt: DateTime
+}
+
+input StructurePaginationCursorDto {
+  SIRET: String
+  id: String!
+}
+
+input StructurePaginationDto {
+  cursor: StructurePaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input StructureSortInputDto {
+  FINESS: FieldSortEnum
+  SIREN: FieldSortEnum
+  SIRET: FieldSortEnum
+  comercialSign: FieldSortEnum
+  companyName: FieldSortEnum
+  createdAt: FieldSortEnum
+  id: FieldSortEnum
+  legalFINESS: FieldSortEnum
+  oldIdentifiers: FieldSortEnum
+  technicalId: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input StructureWhereInputDto {
+  AND: [StructureWhereInputDto!]
+  FINESS: GetManyStringNullableFilterDto
+  NOT: [StructureWhereInputDto!]
+  OR: [StructureWhereInputDto!]
+  SIREN: GetManyStringNullableFilterDto
+  SIRET: GetManyStringFilterDto
+  comercialSign: GetManyStringNullableFilterDto
+  companyName: GetManyStringNullableFilterDto
+  createdAt: DateTimeFilter
+  id: String
+  legalFINESS: GetManyStringNullableFilterDto
+  oldIdentifiers: GetManyStringNullableFilterDto
+  technicalId: GetManyStringNullableFilterDto
+  updatedAt: DateTimeFilter
+}
+
+input UniqueAccountInputDto {
+  email: String
+  id: String
+  secret: String
+}
+
+input UniqueHealthProfessionalHasKnowHowInputDto {
+  UniqueknowHowTypeCode_knowHowCodeInputDto: UniqueHealthProfessionalId_knowHowIdInputDto
+  id: String
+}
+
+input UniqueHealthProfessionalHasPharmacistInformationInputDto {
+  UniquepharmacistInformationTypeCode_pharmacistInformationCodeInputDto: UniqueHealthProfessionalId_pharmacistInformationIdInputDto
+  id: String
+}
+
+input UniqueHealthProfessionalHasProfessionInputDto {
+  UniqueprofessionTypeCode_professionCodeInputDto: UniqueHealthProfessionalId_professionIdInputDto
+  id: String
+}
+
+input UniqueHealthProfessionalHasStructureInputDto {
+  healthProfessionalId_structureId_practiceId: UniqueHealthProfessionalId_structureId_practiceIdInputDto
+  id: String
+}
+
+input UniqueHealthProfessionalId_knowHowIdInputDto {
+  healthProfessionalId: String!
+  knowHowId: String!
+}
+
+input UniqueHealthProfessionalId_pharmacistInformationIdInputDto {
+  healthProfessionalId: String!
+  pharmacistInformationId: String!
+}
+
+input UniqueHealthProfessionalId_professionIdInputDto {
+  healthProfessionalId: String!
+  professionId: String!
+}
+
+input UniqueHealthProfessionalId_structureId_practiceIdInputDto {
+  healthProfessionalId: String!
+  practiceId: String!
+  structureId: String!
+}
+
+input UniqueHealthProfessionalInputDto {
+  PPIdentifier: String
+  id: String
+  nationalPPIdentifier: String
+}
+
+input UniqueKnowHowInputDto {
+  id: String
+  knowHowTypeCode_knowHowCode: UniqueknowHowTypeCode_knowHowCodeInputDto
+}
+
+input UniquePharmacistInformationInputDto {
+  id: String
+  sectionCode: String
+}
+
+input UniqueProfessionCategoryCode_professionCodeInputDto {
+  professionCategoryCode: String!
+  professionCode: String!
+}
+
+input UniqueProfessionInputDto {
+  id: String
+  professionCategoryCode_professionCode: UniqueProfessionCategoryCode_professionCodeInputDto
+}
+
+input UniqueStructureInputDto {
+  SIRET: String
+  id: String
+}
+
+input UniqueknowHowTypeCode_knowHowCodeInputDto {
+  knowHowCode: String!
+  knowHowTypeCode: String!
+}
+
+input UpdateAccountInputDto {
+  company: String
+  description: String
+  email: String
+  isActivated: Boolean
+  permissions: String
+}
+
+input UpdateHealthProfessionalHasKnowHowInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto
+  knowHow: UniqueKnowHowInputDto
+}
+
+input UpdateHealthProfessionalHasPharmacistInformationInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto
+  pharmacistInformation: UniquePharmacistInformationInputDto
+}
+
+input UpdateHealthProfessionalHasProfessionInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto
+  profession: UniqueProfessionInputDto
+}
+
+input UpdateHealthProfessionalHasStructureInputDto {
+  healthProfessional: UniqueHealthProfessionalInputDto
+  practice: CreatePracticeInputDto
+  role: CreateRoleInputDto
+  structure: UniqueStructureInputDto
+}
+
+input UpdateHealthProfessionalInputDto {
+  PPIdentifier: String
+  PPIdentifierType: String
+  civilityCode: String
+  civilityLabel: String
+  firstname: String
+  lastname: String
+  nationalPPIdentifier: String
+  practiceCivilityCode: String
+  practiceCivilityLabel: String
+}
+
+input UpdateKnowHowInputDto {
+  knowHowCode: String
+  knowHowLabel: String
+  knowHowTypeCode: String
+  knowHowTypeLabel: String
+}
+
+input UpdatePharmacistInformationInputDto {
+  sectionCode: String
+  sectionLabel: String
+}
+
+input UpdateProfessionInputDto {
+  professionCategoryCode: String
+  professionCategoryLabel: String
+  professionCode: String
+  professionLabel: String
+}
+
+input UpdateStructureInputDto {
+  FINESS: String
+  SIREN: String
+  SIRET: String
+  activity: CreateActivityInputDto
+  comercialSign: String
+  companyName: String
+  legalFINESS: String
+  oldIdentifiers: [String!]
+  registrationAuthority: CreateRegistrationAuthorityInputDto
+  sector: CreateActivitySectorInputDto
+  technicalId: String
+}

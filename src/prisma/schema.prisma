@@ -1,0 +1,234 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                        String                           @id()
+  createdAt                 DateTime                         @default(now())
+  updatedAt                 DateTime                         @updatedAt
+  // data
+  email                     String                           @unique
+  company                   String?
+  description               String?
+  secret                    String                           @unique
+  isActivated               Boolean                          @default(true)
+  permissions               String
+}
+
+model HealthProfessional {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  PPIdentifierType          String? 
+  PPIdentifier              String                @unique
+  nationalPPIdentifier      String                @unique
+  practiceCivilityCode      String?
+  practiceCivilityLabel     String?
+  civilityCode              String?
+  civilityLabel             String?
+  lastname                  String
+  firstname                 String
+  // relations
+  knowHow                   HealthProfessionalHasKnowHow[]
+  professions               HealthProfessionalHasProfession[]
+  structures                HealthProfessionalHasStructure[]
+  pharinformations          HealthProfessionalHasPharmacistInformation[]
+}
+
+model KnowHow {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  knowHowTypeCode           String
+  knowHowTypeLabel          String
+  knowHowCode               String
+  knowHowLabel              String
+  // relations
+  healthProfessionals       HealthProfessionalHasKnowHow[]
+
+  // meta
+  @@unique([knowHowTypeCode, knowHowCode])
+}
+
+model HealthProfessionalHasKnowHow {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  // relations
+  healthProfessional        HealthProfessional    @relation(fields: [healthProfessionalId], references: [id])
+  healthProfessionalId      String
+  knowHow                   KnowHow               @relation(fields: [knowHowId], references: [id])
+  knowHowId                 String
+
+  @@unique([healthProfessionalId, knowHowId])
+}
+
+
+model Profession {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  professionCategoryCode    String
+  professionCategoryLabel   String
+  professionCode            String
+  professionLabel           String
+  // relations
+  healthProfessionals       HealthProfessionalHasProfession[]
+
+  // meta
+  @@unique([professionCategoryCode, professionCode])
+}
+
+model HealthProfessionalHasProfession {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  // relations
+  healthProfessional        HealthProfessional    @relation(fields: [healthProfessionalId], references: [id])
+  healthProfessionalId      String
+  profession                Profession            @relation(fields: [professionId], references: [id])
+  professionId              String
+
+  @@unique([healthProfessionalId, professionId])
+}
+
+model RegistrationAuthority {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  name                      String                @unique
+  // relations
+  structures                Structure[]
+  // meta
+}
+
+model ActivitySector {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  sectorCode                String                @unique
+  sectorLabel               String
+  // relations
+  structures                Structure[]
+  // meta
+}
+
+model Activity {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  activityCode              String                @unique
+  activityLabel             String
+  // relations
+  structures                Structure[]
+  // meta
+}
+
+model Structure {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  SIRET                     String                @unique
+  SIREN                     String?
+  FINESS                    String?
+  legalFINESS               String?
+  technicalId               String?
+  companyName               String?
+  comercialSign             String?
+  oldIdentifiers            String[]
+  // relations
+  // meta
+  sector                    ActivitySector?       @relation(fields: [sectorId], references: [id])
+  sectorId                  String?
+  registrationAuthority     RegistrationAuthority? @relation(fields: [registrationAuthorityId], references: [id])
+  registrationAuthorityId   String?
+  healthProfessionals       HealthProfessionalHasStructure[]
+  activity                  Activity?             @relation(fields: [activityId], references: [id])
+  activityId                String?
+}
+
+model Practice {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  practiceCode              String                @unique
+  practiceLabel             String
+  // relations
+  hpHasStructure             HealthProfessionalHasStructure[]
+  // meta
+}
+
+model Role {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  roleCode                  String                @unique
+  roleLabel                 String
+  // relations
+  hpHasStructure             HealthProfessionalHasStructure[]
+  // meta
+}
+
+model HealthProfessionalHasStructure {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  // relations
+  healthProfessional        HealthProfessional    @relation(fields: [healthProfessionalId], references: [id])
+  healthProfessionalId      String
+  structure                 Structure             @relation(fields: [structureId], references: [id])
+  structureId               String
+  practice                  Practice              @relation(fields: [practiceId], references: [id])
+  practiceId                String
+  role                      Role?                 @relation(fields: [roleId], references: [id])
+  roleId                    String?
+
+  @@unique([healthProfessionalId, structureId, practiceId])
+}
+
+model PharmacistInformation {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  sectionCode               String                @unique
+  sectionLabel              String
+  // relations
+  healthProfessionals       HealthProfessionalHasPharmacistInformation[]
+  // meta
+
+}
+
+model HealthProfessionalHasPharmacistInformation {
+  id                        String                @id()
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  // data
+  // relations
+  healthProfessional        HealthProfessional    @relation(fields: [healthProfessionalId], references: [id])
+  healthProfessionalId      String
+  pharmacistInformation     PharmacistInformation @relation(fields: [pharmacistInformationId], references: [id])
+  pharmacistInformationId   String
+  // meta
+  @@unique([healthProfessionalId, pharmacistInformationId])
+}
