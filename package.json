@@ -20,7 +20,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:migrate:prod": "cd src && npx prisma migrate deploy",
-    "prisma:migrate:dev": "cd src && npx prisma migrate dev"
+    "prisma:migrate:dev": "cd src && npx prisma migrate dev",
+    "prisma:generate": "cd src && npx prisma generate"
   },
   "dependencies": {
     "@nestjs/apollo": "^10.1.6",
