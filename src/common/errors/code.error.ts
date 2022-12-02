@@ -5,6 +5,7 @@ export enum ErrorEnum {
   FORBIDDEN_ERROR = 'I-1003',
   API_KEY_REQUIRED = 'I-1004',
   API_KEY_INVALID = 'I-1005',
+  ACCOUNT_DEACTIVATED = 'I-1006',
   //
   ACCOUNT_NOT_FOUND = 'I-1101',
   CREATE_ACCOUNT_ERROR = 'I-1102',
@@ -77,6 +78,7 @@ export const errorToMessageDefinition = {
   [ErrorEnum.FORBIDDEN_ERROR]: 'You cannot perform this action',
   [ErrorEnum.API_KEY_REQUIRED]: 'API key is required',
   [ErrorEnum.API_KEY_INVALID]: 'API key is invalid',
+  [ErrorEnum.ACCOUNT_DEACTIVATED]: 'Account is deactivated',
   //
   [ErrorEnum.ACCOUNT_NOT_FOUND]: 'Account not found',
   [ErrorEnum.CREATE_ACCOUNT_ERROR]:

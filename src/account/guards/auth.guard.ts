@@ -77,13 +77,14 @@ export class GQLAuthGuard implements CanActivate {
     if (!apiKey) throwError(ErrorEnum.API_KEY_REQUIRED);
     if (!apiKey.startsWith('sk_')) throwError(ErrorEnum.API_KEY_INVALID);
     try {
-      const account = await this.accountService.unique({ secret: apiKey });
-      request.account = account;
-      this.checkPermissions(context, account);
+      request.account = await this.accountService.unique({ secret: apiKey });
     } catch (error) {
       console.log(error);
       throwError(ErrorEnum.API_KEY_INVALID);
     }
+    if (!request.account?.isActivated)
+      throwError(ErrorEnum.ACCOUNT_DEACTIVATED);
+    this.checkPermissions(context, request.account);
     return true;
   }
 }
