@@ -26,7 +26,7 @@ export class CreateKnowHowInputDto {
   knowHowLabel: string;
 
   @Field({ nullable: true })
-  healthProfessionalId: string;
+  healthProfessionalId?: string;
 }
 
 @InputType()

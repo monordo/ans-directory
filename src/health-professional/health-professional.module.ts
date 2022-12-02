@@ -13,5 +13,10 @@ import { HealthProfessionalService } from './services/health-professional.servic
     HealthProfessionalService,
     HealthProfessionalResolver,
   ],
+  exports: [
+    HealthProfessionalRepository,
+    HealthProfessionalService,
+    HealthProfessionalResolver,
+  ],
 })
 export class HealthProfessionalModule {}

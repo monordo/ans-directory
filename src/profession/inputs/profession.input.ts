@@ -26,7 +26,7 @@ export class CreateProfessionInputDto {
   professionLabel: string;
 
   @Field({ nullable: true })
-  healthProfessionalId: string;
+  healthProfessionalId?: string;
 }
 
 @InputType()

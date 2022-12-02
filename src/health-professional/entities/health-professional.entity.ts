@@ -56,7 +56,7 @@ export class HealthProfessionalEntity extends AbstractEntity {
   @Field(() => [HealthProfessionalHasKnowHowEntity], { nullable: true })
   knowHow?: HealthProfessionalHasKnowHow.DTO[];
 
-  constructor(prisma: PrismaService) {
+  constructor(prisma: PrismaService | Prisma.TransactionClient) {
     super(prisma, 'hp', HealthProfessionalEntity.name);
   }
 
@@ -146,6 +146,7 @@ export class HealthProfessionalEntity extends AbstractEntity {
       });
       return this.setData(object);
     } catch (error) {
+      console.log(error);
       new PrismaErrorTraductor(error, this.entityName).throwError(
         ErrorEnum.CREATE_HEALTH_PROFESSIONAL_ERROR,
       );

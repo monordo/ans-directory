@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common';
 import { EntityDto, EntityInitArgs } from '../dtos/entity.dto';
 import * as cuid from 'cuid';
 import { randomBytes } from 'crypto';
+import { Prisma } from '@prisma/client';
 
 @ObjectType()
 export abstract class AbstractEntity {
@@ -21,7 +22,7 @@ export abstract class AbstractEntity {
   isSave = () => !!this.id;
 
   constructor(
-    protected readonly prismaService: PrismaService,
+    protected readonly prismaService: PrismaService | Prisma.TransactionClient,
     protected readonly idPrefix: string,
     protected readonly entityName: string,
   ) {

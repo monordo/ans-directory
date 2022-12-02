@@ -20,5 +20,13 @@ import { KnowHowService } from './services/know-how.service';
     HealthProfessionalHasKnowHowRepository,
     HealthProfessionalHasKnowHowResolver,
   ],
+  exports: [
+    KnowHowService,
+    KnowHowRepository,
+    KnowHowResolver,
+    HealthProfessionalHasKnowHowService,
+    HealthProfessionalHasKnowHowRepository,
+    HealthProfessionalHasKnowHowResolver,
+  ],
 })
 export class KnowHowModule {}

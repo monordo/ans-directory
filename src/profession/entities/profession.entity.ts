@@ -34,7 +34,7 @@ export class ProfessionEntity extends AbstractEntity {
   @Field()
   professionLabel: string;
 
-  constructor(prisma: PrismaService) {
+  constructor(prisma: PrismaService | Prisma.TransactionClient) {
     super(prisma, 'kh', ProfessionEntity.name);
   }
 

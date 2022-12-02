@@ -13,6 +13,7 @@ import { BitfieldManagerModule } from '@open-monordo/bitfield-permission-manager
 import { ProfessionModule } from './profession/profession.module';
 import { StuctureModule } from './stucture/stucture.module';
 import { PharmacistInformationModule } from './pharmacist-information/pharmacist-information.module';
+import { UpdateModule } from './update/update.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { PharmacistInformationModule } from './pharmacist-information/pharmacist
     ProfessionModule,
     StuctureModule,
     PharmacistInformationModule,
+    UpdateModule,
   ],
   controllers: [AppController],
   providers: [AppService],

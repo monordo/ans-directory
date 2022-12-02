@@ -33,7 +33,7 @@ export class KnowHowEntity extends AbstractEntity {
   @Field()
   knowHowLabel: string;
 
-  constructor(prisma: PrismaService) {
+  constructor(prisma: PrismaService | Prisma.TransactionClient) {
     super(prisma, 'kh', KnowHowEntity.name);
   }
 

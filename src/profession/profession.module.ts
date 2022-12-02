@@ -18,5 +18,13 @@ import { ProfessionService } from './services/profession.service';
     HealthProfessionalHasProfessionRepository,
     HealthProfessionalHasProfessionResolver,
   ],
+  exports: [
+    ProfessionService,
+    ProfessionRepository,
+    ProfessionResolver,
+    HealthProfessionalHasProfessionService,
+    HealthProfessionalHasProfessionRepository,
+    HealthProfessionalHasProfessionResolver,
+  ],
 })
 export class ProfessionModule {}

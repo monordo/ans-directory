@@ -7,6 +7,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ErrorEnum } from './common/errors/code.error';
 import { throwError } from './common/errors/utils.error';
+import { FileParser } from './update/providers/file-parser.provider';
 
 export class CustomValidationPipe extends ValidationPipe {
   public async transform(value, metadata: ArgumentMetadata) {
