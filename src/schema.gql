@@ -246,8 +246,11 @@ type HealthProfessionalEntity {
   knowHow: [HealthProfessionalHasKnowHowEntity!]
   lastname: String!
   nationalPPIdentifier: String!
+  pharinformations: [HealthProfessionalHasPharmacistInformationEntity!]
   practiceCivilityCode: String
   practiceCivilityLabel: String
+  professions: [HealthProfessionalHasProfessionEntity!]
+  structures: [HealthProfessionalHasStructureEntity!]
   updatedAt: DateTime
 }
 
