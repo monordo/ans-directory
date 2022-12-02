@@ -22,7 +22,7 @@ export class CreatePharmacistInformationInputDto {
   sectionLabel: string;
 
   @Field({ nullable: true })
-  healthProfessionalId: string;
+  healthProfessionalId?: string;
 }
 
 @InputType()

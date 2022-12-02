@@ -246,8 +246,11 @@ type HealthProfessionalEntity {
   knowHow: [HealthProfessionalHasKnowHowEntity!]
   lastname: String!
   nationalPPIdentifier: String!
+  pharinformations: [HealthProfessionalHasPharmacistInformationEntity!]
   practiceCivilityCode: String
   practiceCivilityLabel: String
+  professions: [HealthProfessionalHasProfessionEntity!]
+  structures: [HealthProfessionalHasStructureEntity!]
   updatedAt: DateTime
 }
 
@@ -689,7 +692,7 @@ type Query {
   getUniquePharmacistInformation(where: UniquePharmacistInformationInputDto!): PharmacistInformationEntity!
   getUniqueProfession(where: UniqueProfessionInputDto!): ProfessionEntity!
   getUniqueStructure(where: UniqueStructureInputDto!): StructureEntity!
-  test: String!
+  update(type: UpdateTypeEnum!): String!
 }
 
 enum QueryMode {
@@ -947,4 +950,10 @@ input UpdateStructureInputDto {
   registrationAuthority: CreateRegistrationAuthorityInputDto
   sector: CreateActivitySectorInputDto
   technicalId: String
+}
+
+"""Type of update"""
+enum UpdateTypeEnum {
+  ACTIVITY
+  KNOW_HOW
 }

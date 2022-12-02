@@ -67,7 +67,7 @@ export class KnowHowLoader extends FileLoader {
         });
       });
     } catch (error) {
-      console.log(error, this.getKnowHowFromLine(line));
+      console.log(error, `INDEX: ${index}`);
     }
   };
 

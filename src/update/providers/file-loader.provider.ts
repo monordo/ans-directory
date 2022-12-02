@@ -25,4 +25,8 @@ export class FileLoader {
     if (tmp === '') return undefined;
     return value ?? undefined;
   };
+
+  checkIlAllIndexesAreAvailable = (line: string[], indexes: number[]) => {
+    return indexes.every((index) => this.clean(line[index]));
+  };
 }
