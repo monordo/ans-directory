@@ -12,7 +12,13 @@ import { ErrorEnum } from 'src/common/errors/code.error';
 import { PrismaErrorTraductor } from 'src/common/errors/prisma-traductor.error';
 import { HealthProfessionalHasKnowHow } from 'src/know-how/dtos/health-professional-has-know-how.dto';
 import { HealthProfessionalHasKnowHowEntity } from 'src/know-how/entities/health-professional-has-know-how.entity';
+import { HealthProfessionalHasPharmacistInformation } from 'src/pharmacist-information/dtos/health-professional-has-pharmacist-information.dto';
+import { HealthProfessionalHasPharmacistInformationEntity } from 'src/pharmacist-information/entities/health-professional-has-pharmacist-information.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { HealthProfessionalHasProfession } from 'src/profession/dtos/health-professional-has-profession.dto';
+import { HealthProfessionalHasProfessionEntity } from 'src/profession/entities/health-professional-has-profession.entity';
+import { HealthProfessionalHasStructure } from 'src/stucture/dtos/health-professional-has-structure.dto';
+import { HealthProfessionalHasStructureEntity } from 'src/stucture/entities/health-professional-has-structure.entity';
 import { HealthProfessional } from '../dtos/health-professional.dto';
 import {
   HealthProfessionalPaginationDto,
@@ -56,6 +62,17 @@ export class HealthProfessionalEntity extends AbstractEntity {
   @Field(() => [HealthProfessionalHasKnowHowEntity], { nullable: true })
   knowHow?: HealthProfessionalHasKnowHow.DTO[];
 
+  @Field(() => [HealthProfessionalHasProfessionEntity], { nullable: true })
+  professions?: HealthProfessionalHasProfession.DTO[];
+
+  @Field(() => [HealthProfessionalHasPharmacistInformationEntity], {
+    nullable: true,
+  })
+  pharinformations?: HealthProfessionalHasPharmacistInformation.DTO[];
+
+  @Field(() => [HealthProfessionalHasStructureEntity], { nullable: true })
+  structures?: HealthProfessionalHasStructure.DTO[];
+
   constructor(prisma: PrismaService | Prisma.TransactionClient) {
     super(prisma, 'hp', HealthProfessionalEntity.name);
   }
@@ -84,17 +101,36 @@ export class HealthProfessionalEntity extends AbstractEntity {
       civilityLabel: this.civilityLabel,
       lastname: this.lastname,
       firstname: this.firstname,
+      knowHow: this.knowHow,
+      professions: this.professions,
+      pharinformations: this.pharinformations,
+      structures: this.structures,
     };
   }
+
+  defaultIncludes = (): Prisma.HealthProfessionalInclude => ({
+    knowHow: {
+      include: { knowHow: true },
+    },
+    professions: {
+      include: { profession: true },
+    },
+    pharinformations: {
+      include: { pharmacistInformation: true },
+    },
+    structures: {
+      include: { structure: true, role: true, practice: true },
+    },
+  });
 
   async init(
     init: EntityInitArgs<Prisma.HealthProfessionalWhereUniqueInput>,
   ): Promise<HealthProfessionalEntity> {
-    const { where, include } = init;
+    const { where } = init;
     try {
       const object = await this.prismaService.healthProfessional.findUnique({
         where,
-        include,
+        include: this.defaultIncludes(),
       });
       if (!object)
         throw new Error(
@@ -117,6 +153,7 @@ export class HealthProfessionalEntity extends AbstractEntity {
           ...data,
           id: this.generateId(),
         },
+        include: this.defaultIncludes(),
       });
       return this.setData(object);
     } catch (error) {
@@ -143,6 +180,7 @@ export class HealthProfessionalEntity extends AbstractEntity {
             'PPIdentifierType',
           ]),
         },
+        include: this.defaultIncludes(),
       });
       return this.setData(object);
     } catch (error) {
@@ -161,6 +199,7 @@ export class HealthProfessionalEntity extends AbstractEntity {
       const object = await this.prismaService.healthProfessional.update({
         where,
         data,
+        include: this.defaultIncludes(),
       });
       return this.setData(object);
     } catch (error) {
@@ -176,6 +215,7 @@ export class HealthProfessionalEntity extends AbstractEntity {
     try {
       const rslt = await this.prismaService.healthProfessional.delete({
         where,
+        include: this.defaultIncludes(),
       });
       return this.setData(rslt);
     } catch (error) {

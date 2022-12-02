@@ -30,21 +30,9 @@ export class AccountRepository extends AbstractRepositoryWithFind<
   AccountSortInputDto,
   AccountPaginationDto
 > {
-  constructor(
-    private readonly prismaService: PrismaService,
-    private readonly bitfieldService: BitfieldProvider,
-  ) {
+  constructor(private readonly prismaService: PrismaService) {
     super(AccountEntity, AccountArrayEntity, prismaService);
   }
-
-  // create = async (data: CreateAccountInputDto): Promise<AccountEntity> => {
-  //   return new AccountEntity(this.prismaService).create({
-  //     ...data,
-  //     permissions: this.bitfieldService
-  //       .compute([GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL.value])
-  //       .toString(),
-  //   });
-  // };
 
   count = async (where?: Prisma.AccountWhereInput): Promise<number> =>
     this.prismaService.account.count({ where });
