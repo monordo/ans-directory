@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AccountArrayEntity {
+  count: Float!
+  data: [AccountEntity!]!
+  total: Float!
+}
+
 type AccountEntity {
   company: String
   createdAt: DateTime
@@ -12,6 +18,37 @@ type AccountEntity {
   permissions: String!
   secret: String!
   updatedAt: DateTime
+}
+
+input AccountPaginationCursorDto {
+  email: String
+  id: String!
+  secret: String
+}
+
+input AccountPaginationDto {
+  cursor: AccountPaginationCursorDto
+  skip: Float
+  take: Float
+}
+
+input AccountSortInputDto {
+  createdAt: FieldSortEnum
+  email: FieldSortEnum
+  id: FieldSortEnum
+  secret: FieldSortEnum
+  updatedAt: FieldSortEnum
+}
+
+input AccountWhereInputDto {
+  AND: [AccountWhereInputDto!]
+  NOT: [AccountWhereInputDto!]
+  OR: [AccountWhereInputDto!]
+  createdAt: DateTimeFilter
+  email: GetManyStringFilterDto
+  id: String
+  secret: GetManyStringFilterDto
+  updatedAt: DateTimeFilter
 }
 
 type Activity {
@@ -632,6 +669,7 @@ input ProfessionWhereInputDto {
 }
 
 type Query {
+  getManyAccount(pagination: AccountPaginationDto, sort: AccountSortInputDto, where: AccountWhereInputDto): AccountArrayEntity!
   getManyHealthProfessional(pagination: HealthProfessionalPaginationDto, sort: HealthProfessionalSortInputDto, where: HealthProfessionalWhereInputDto): HealthProfessionalArrayEntity!
   getManyHealthProfessionalHasKnowHow(pagination: HealthProfessionalHasKnowHowPaginationDto, sort: HealthProfessionalHasKnowHowSortInputDto, where: HealthProfessionalHasKnowHowWhereInputDto): HealthProfessionalHasKnowHowArrayEntity!
   getManyHealthProfessionalHasPharmacistInformation(pagination: HealthProfessionalHasPharmacistInformationPaginationDto, sort: HealthProfessionalHasPharmacistInformationSortInputDto, where: HealthProfessionalHasPharmacistInformationWhereInputDto): HealthProfessionalHasPharmacistInformationArrayEntity!

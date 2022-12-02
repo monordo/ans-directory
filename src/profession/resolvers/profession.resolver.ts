@@ -24,7 +24,8 @@ export class ProfessionResolver {
   constructor(private service: ProfessionService) {}
 
   @Query(() => ProfessionEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_PROFESSION)
   async getUniqueProfession(
     @Args('where') where: UniqueProfessionInputDto,
   ): Promise<ProfessionEntity> {
@@ -32,8 +33,8 @@ export class ProfessionResolver {
   }
 
   @Query(() => ProfessionArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_MANY_PROFESSION)
   async getManyProfession(
     @Args('where', { nullable: true }) where?: ProfessionWhereInputDto,
     @Args('sort', { nullable: true }) sort?: ProfessionSortInputDto,
@@ -44,7 +45,8 @@ export class ProfessionResolver {
   }
 
   @Mutation(() => ProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_PROFESSION)
   async createProfession(
     @Args('profession')
     profession: CreateProfessionInputDto,
@@ -53,7 +55,8 @@ export class ProfessionResolver {
   }
 
   @Mutation(() => ProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_PROFESSION)
   async getOrCreateProfession(
     @Args('profession')
     profession: CreateProfessionInputDto,
@@ -62,7 +65,8 @@ export class ProfessionResolver {
   }
 
   @Mutation(() => ProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_PROFESSION)
   async updateProfession(
     @Args('where') where: UniqueProfessionInputDto,
     @Args('profession')
@@ -72,7 +76,8 @@ export class ProfessionResolver {
   }
 
   @Mutation(() => ProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_PROFESSION)
   async deleteProfession(
     @Args('where') where: UniqueProfessionInputDto,
   ): Promise<ProfessionEntity> {

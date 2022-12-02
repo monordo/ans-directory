@@ -15,15 +15,14 @@ export abstract class AbstractService<
   UniqueInput,
   CreateInput,
   UpdateInput,
+  Repository extends AbstractRepository<
+    Entity,
+    UniqueInput,
+    CreateInput,
+    UpdateInput
+  >,
 > {
-  constructor(
-    private readonly repo: AbstractRepository<
-      Entity,
-      UniqueInput,
-      CreateInput,
-      UpdateInput
-    >,
-  ) {}
+  constructor(protected readonly repo: Repository) {}
 
   unique = async (where: UniqueInput): Promise<Entity> =>
     this.repo.unique(where);
@@ -48,9 +47,24 @@ export abstract class AbstractServiceWithFind<
   GetManyWhereInput,
   GetManySortInput,
   GetManyPagination,
+> extends AbstractService<
+  Entity,
+  UniqueInput,
+  CreateInput,
+  UpdateInput,
+  AbstractRepositoryWithFind<
+    Entity,
+    ArrayEntity,
+    UniqueInput,
+    CreateInput,
+    UpdateInput,
+    GetManyWhereInput,
+    GetManySortInput,
+    GetManyPagination
+  >
 > {
   constructor(
-    private readonly repo: AbstractRepositoryWithFind<
+    repo: AbstractRepositoryWithFind<
       Entity,
       ArrayEntity,
       UniqueInput,
@@ -60,7 +74,9 @@ export abstract class AbstractServiceWithFind<
       GetManySortInput,
       GetManyPagination
     >,
-  ) {}
+  ) {
+    super(repo);
+  }
 
   unique = async (where: UniqueInput): Promise<Entity> =>
     this.repo.unique(where);

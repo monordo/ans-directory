@@ -24,7 +24,8 @@ export class PharmacistInformationResolver {
   constructor(private service: PharmacistInformationService) {}
 
   @Query(() => PharmacistInformationEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_PHARMACIST_INFORMATION)
   async getUniquePharmacistInformation(
     @Args('where') where: UniquePharmacistInformationInputDto,
   ): Promise<PharmacistInformationEntity> {
@@ -32,8 +33,8 @@ export class PharmacistInformationResolver {
   }
 
   @Query(() => PharmacistInformationArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_MANY_PHARMACIST_INFORMATION)
   async getManyPharmacistInformation(
     @Args('where', { nullable: true })
     where?: PharmacistInformationWhereInputDto,
@@ -45,7 +46,8 @@ export class PharmacistInformationResolver {
   }
 
   @Mutation(() => PharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_PHARMACIST_INFORMATION)
   async createPharmacistInformation(
     @Args('pharmacistInformation')
     pharmacistInformation: CreatePharmacistInformationInputDto,
@@ -54,7 +56,8 @@ export class PharmacistInformationResolver {
   }
 
   @Mutation(() => PharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_PHARMACIST_INFORMATION)
   async getOrCreatePharmacistInformation(
     @Args('pharmacistInformation')
     pharmacistInformation: CreatePharmacistInformationInputDto,
@@ -63,7 +66,8 @@ export class PharmacistInformationResolver {
   }
 
   @Mutation(() => PharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_PHARMACIST_INFORMATION)
   async updatePharmacistInformation(
     @Args('where') where: UniquePharmacistInformationInputDto,
     @Args('pharmacistInformation')
@@ -73,7 +77,8 @@ export class PharmacistInformationResolver {
   }
 
   @Mutation(() => PharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_PHARMACIST_INFORMATION)
   async deletePharmacistInformation(
     @Args('where') where: UniquePharmacistInformationInputDto,
   ): Promise<PharmacistInformationEntity> {

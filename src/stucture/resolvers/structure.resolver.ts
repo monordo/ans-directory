@@ -26,7 +26,8 @@ export class StructureResolver {
   constructor(private service: StructureService) {}
 
   @Query(() => StructureEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_STRUCTURE)
   async getUniqueStructure(
     @Args('where') where: UniqueStructureInputDto,
   ): Promise<StructureEntity> {
@@ -34,8 +35,8 @@ export class StructureResolver {
   }
 
   @Query(() => StructureArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_MANY_STRUCTURE)
   async getManyStructure(
     @Args('where', { nullable: true }) where?: StructureWhereInputDto,
     @Args('sort', { nullable: true }) sort?: StructureSortInputDto,
@@ -46,7 +47,8 @@ export class StructureResolver {
   }
 
   @Mutation(() => StructureEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_STRUCTURE)
   async createStructure(
     @Args('structure')
     structure: CreateStructureInputDto,
@@ -55,7 +57,8 @@ export class StructureResolver {
   }
 
   @Mutation(() => StructureEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_STRUCTURE)
   async updateOrCreateStructure(
     @Args('structure')
     structure: CreateStructureInputDto,
@@ -64,7 +67,8 @@ export class StructureResolver {
   }
 
   @Mutation(() => StructureEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_STRUCTURE)
   async updateStructure(
     @Args('where') where: UniqueStructureInputDto,
     @Args('structure')
@@ -74,7 +78,8 @@ export class StructureResolver {
   }
 
   @Mutation(() => StructureEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_STRUCTURE)
   async deleteStructure(
     @Args('where') where: UniqueStructureInputDto,
   ): Promise<StructureEntity> {

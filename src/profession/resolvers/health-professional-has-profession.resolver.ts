@@ -24,7 +24,8 @@ export class HealthProfessionalHasProfessionResolver {
   constructor(private service: HealthProfessionalHasProfessionService) {}
 
   @Query(() => HealthProfessionalHasProfessionEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_HP_HAS_PROFESSION)
   async getUniqueHealthProfessionalHasProfession(
     @Args('where') where: UniqueHealthProfessionalHasProfessionInputDto,
   ): Promise<HealthProfessionalHasProfessionEntity> {
@@ -32,8 +33,8 @@ export class HealthProfessionalHasProfessionResolver {
   }
 
   @Query(() => HealthProfessionalHasProfessionArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_MANY_HP_HAS_PROFESSION)
   async getManyHealthProfessionalHasProfession(
     @Args('where', { nullable: true })
     where?: HealthProfessionalHasProfessionWhereInputDto,
@@ -46,7 +47,8 @@ export class HealthProfessionalHasProfessionResolver {
   }
 
   @Mutation(() => HealthProfessionalHasProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_HP_HAS_PROFESSION)
   async createHealthProfessionalHasProfession(
     @Args('healthProfessionalHasProfession')
     healthProfessionalHasProfession: CreateHealthProfessionalHasProfessionInputDto,
@@ -55,7 +57,8 @@ export class HealthProfessionalHasProfessionResolver {
   }
 
   @Mutation(() => HealthProfessionalHasProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_HP_HAS_PROFESSION)
   async getOrCreateHealthProfessionalHasProfession(
     @Args('healthProfessionalHasProfession')
     healthProfessionalHasProfession: CreateHealthProfessionalHasProfessionInputDto,
@@ -64,7 +67,8 @@ export class HealthProfessionalHasProfessionResolver {
   }
 
   @Mutation(() => HealthProfessionalHasProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_HP_HAS_PROFESSION)
   async updateHealthProfessionalHasProfession(
     @Args('where') where: UniqueHealthProfessionalHasProfessionInputDto,
     @Args('healthProfessionalHasProfession')
@@ -74,7 +78,8 @@ export class HealthProfessionalHasProfessionResolver {
   }
 
   @Mutation(() => HealthProfessionalHasProfessionEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_HP_HAS_PROFESSION)
   async deleteHealthProfessionalHasProfession(
     @Args('where') where: UniqueHealthProfessionalHasProfessionInputDto,
   ): Promise<HealthProfessionalHasProfessionEntity> {

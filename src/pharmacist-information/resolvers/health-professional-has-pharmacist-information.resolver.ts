@@ -26,7 +26,8 @@ export class HealthProfessionalHasPharmacistInformationResolver {
   ) {}
 
   @Query(() => HealthProfessionalHasPharmacistInformationEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_HP_HAS_PHARMACIST_INFORMATION)
   async getUniqueHealthProfessionalHasPharmacistInformation(
     @Args('where')
     where: UniqueHealthProfessionalHasPharmacistInformationInputDto,
@@ -35,8 +36,10 @@ export class HealthProfessionalHasPharmacistInformationResolver {
   }
 
   @Query(() => HealthProfessionalHasPharmacistInformationArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(
+    GeneralPermissions.GET_MANY_HP_HAS_PHARMACIST_INFORMATION,
+  )
   async getManyHealthProfessionalHasPharmacistInformation(
     @Args('where', { nullable: true })
     where?: HealthProfessionalHasPharmacistInformationWhereInputDto,
@@ -49,7 +52,8 @@ export class HealthProfessionalHasPharmacistInformationResolver {
   }
 
   @Mutation(() => HealthProfessionalHasPharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_HP_HAS_PHARMACIST_INFORMATION)
   async createHealthProfessionalHasPharmacistInformation(
     @Args('healthProfessionalHasPharmacistInformation')
     healthProfessionalHasPharmacistInformation: CreateHealthProfessionalHasPharmacistInformationInputDto,
@@ -60,7 +64,8 @@ export class HealthProfessionalHasPharmacistInformationResolver {
   }
 
   @Mutation(() => HealthProfessionalHasPharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_HP_HAS_PHARMACIST_INFORMATION)
   async getOrCreateHealthProfessionalHasPharmacistInformation(
     @Args('healthProfessionalHasPharmacistInformation')
     healthProfessionalHasPharmacistInformation: CreateHealthProfessionalHasPharmacistInformationInputDto,
@@ -71,7 +76,8 @@ export class HealthProfessionalHasPharmacistInformationResolver {
   }
 
   @Mutation(() => HealthProfessionalHasPharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_HP_HAS_PHARMACIST_INFORMATION)
   async updateHealthProfessionalHasPharmacistInformation(
     @Args('where')
     where: UniqueHealthProfessionalHasPharmacistInformationInputDto,
@@ -85,7 +91,8 @@ export class HealthProfessionalHasPharmacistInformationResolver {
   }
 
   @Mutation(() => HealthProfessionalHasPharmacistInformationEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_HP_HAS_PHARMACIST_INFORMATION)
   async deleteHealthProfessionalHasPharmacistInformation(
     @Args('where')
     where: UniqueHealthProfessionalHasPharmacistInformationInputDto,

@@ -24,7 +24,8 @@ export class HealthProfessionalHasKnowHowResolver {
   constructor(private service: HealthProfessionalHasKnowHowService) {}
 
   @Query(() => HealthProfessionalHasKnowHowEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_HP_HAS_KNOW_HOW)
   async getUniqueHealthProfessionalHasKnowHow(
     @Args('where') where: UniqueHealthProfessionalHasKnowHowInputDto,
   ): Promise<HealthProfessionalHasKnowHowEntity> {
@@ -32,8 +33,8 @@ export class HealthProfessionalHasKnowHowResolver {
   }
 
   @Query(() => HealthProfessionalHasKnowHowArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_MANY_HP_HAS_KNOW_HOW)
   async getManyHealthProfessionalHasKnowHow(
     @Args('where', { nullable: true })
     where?: HealthProfessionalHasKnowHowWhereInputDto,
@@ -46,7 +47,8 @@ export class HealthProfessionalHasKnowHowResolver {
   }
 
   @Mutation(() => HealthProfessionalHasKnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_HP_HAS_KNOW_HOW)
   async createHealthProfessionalHasKnowHow(
     @Args('healthProfessionalHasKnowHow')
     healthProfessionalHasKnowHow: CreateHealthProfessionalHasKnowHowInputDto,
@@ -55,7 +57,8 @@ export class HealthProfessionalHasKnowHowResolver {
   }
 
   @Mutation(() => HealthProfessionalHasKnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_HP_HAS_KNOW_HOW)
   async getOrCreateHealthProfessionalHasKnowHow(
     @Args('healthProfessionalHasKnowHow')
     healthProfessionalHasKnowHow: CreateHealthProfessionalHasKnowHowInputDto,
@@ -64,7 +67,8 @@ export class HealthProfessionalHasKnowHowResolver {
   }
 
   @Mutation(() => HealthProfessionalHasKnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_HP_HAS_KNOW_HOW)
   async updateHealthProfessionalHasKnowHow(
     @Args('where') where: UniqueHealthProfessionalHasKnowHowInputDto,
     @Args('healthProfessionalHasKnowHow')
@@ -74,7 +78,8 @@ export class HealthProfessionalHasKnowHowResolver {
   }
 
   @Mutation(() => HealthProfessionalHasKnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_HP_HAS_KNOW_HOW)
   async deleteHealthProfessionalHasKnowHow(
     @Args('where') where: UniqueHealthProfessionalHasKnowHowInputDto,
   ): Promise<HealthProfessionalHasKnowHowEntity> {

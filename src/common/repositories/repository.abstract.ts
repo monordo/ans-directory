@@ -14,8 +14,8 @@ export abstract class AbstractRepository<
   UpdateInput,
 > {
   constructor(
-    private readonly MyEntity: { new (prisma: PrismaService): Entity },
-    private readonly prisma: PrismaService,
+    protected readonly MyEntity: { new (prisma: PrismaService): Entity },
+    protected readonly prisma: PrismaService,
   ) {}
 
   unique = async (where: UniqueInput): Promise<Entity> =>
@@ -41,26 +41,16 @@ export abstract class AbstractRepositoryWithFind<
   GetManyWhereInput,
   GetManySortInput,
   GetManyPagination,
-> {
+> extends AbstractRepository<Entity, UniqueInput, CreateInput, UpdateInput> {
   constructor(
-    private readonly MyEntity: { new (prisma: PrismaService): Entity },
+    MyEntity: { new (prisma: PrismaService): Entity },
     private readonly MyArrayEntity: {
       new (prisma: PrismaService): ArrayEntity;
     },
-    private readonly prisma: PrismaService,
-  ) {}
-
-  unique = async (where: UniqueInput): Promise<Entity> =>
-    new this.MyEntity(this.prisma).init({ where }) as Promise<Entity>;
-
-  create = async (data: CreateInput): Promise<Entity> =>
-    new this.MyEntity(this.prisma).create(data) as Promise<Entity>;
-
-  update = async (where: UniqueInput, data: UpdateInput): Promise<Entity> =>
-    new this.MyEntity(this.prisma).update(where, data) as Promise<Entity>;
-
-  delete = async (where: UniqueInput): Promise<Entity> =>
-    new this.MyEntity(this.prisma).delete(where) as Promise<Entity>;
+    prisma: PrismaService,
+  ) {
+    super(MyEntity, prisma);
+  }
 
   find = async (
     where?: GetManyWhereInput,

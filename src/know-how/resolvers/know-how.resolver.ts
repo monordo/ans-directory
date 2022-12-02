@@ -21,7 +21,8 @@ export class KnowHowResolver {
   constructor(private service: KnowHowService) {}
 
   @Query(() => KnowHowEntity)
-  // @UseGuards(GQLAuthGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_KNOW_HOW)
   async getUniqueKnowHow(
     @Args('where') where: UniqueKnowHowInputDto,
   ): Promise<KnowHowEntity> {
@@ -29,8 +30,8 @@ export class KnowHowResolver {
   }
 
   @Query(() => KnowHowArrayEntity)
-  // @UseGuards(GQLAuthGuard)
-  // @RequiredPermissions(GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.GET_MANY_KNOW_HOW)
   async getManyKnowHow(
     @Args('where', { nullable: true }) where?: KnowHowWhereInputDto,
     @Args('sort', { nullable: true }) sort?: KnowHowSortInputDto,
@@ -41,7 +42,8 @@ export class KnowHowResolver {
   }
 
   @Mutation(() => KnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_KNOW_HOW)
   async createKnowHow(
     @Args('knowHow')
     knowHow: CreateKnowHowInputDto,
@@ -50,7 +52,8 @@ export class KnowHowResolver {
   }
 
   @Mutation(() => KnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.CREATE_KNOW_HOW)
   async getOrCreateKnowHow(
     @Args('knowHow')
     knowHow: CreateKnowHowInputDto,
@@ -59,7 +62,8 @@ export class KnowHowResolver {
   }
 
   @Mutation(() => KnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.UPDATE_KNOW_HOW)
   async updateKnowHow(
     @Args('where') where: UniqueKnowHowInputDto,
     @Args('knowHow')
@@ -69,7 +73,8 @@ export class KnowHowResolver {
   }
 
   @Mutation(() => KnowHowEntity)
-  // @UseGuards(JwtAuthGuard, ContactPermissionGuard)
+  @UseGuards(GQLAuthGuard)
+  @RequiredPermissions(GeneralPermissions.DELETE_KNOW_HOW)
   async deleteKnowHow(
     @Args('where') where: UniqueKnowHowInputDto,
   ): Promise<KnowHowEntity> {

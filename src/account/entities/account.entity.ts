@@ -3,7 +3,10 @@ import { Prisma, Account as PrismaObject } from '@prisma/client';
 
 import * as _ from 'lodash';
 import { EntityInitArgs } from 'src/common/dtos/entity.dto';
-import { AbstractEntity } from 'src/common/entities/entity.abstract';
+import {
+  AbstractArrayEntity,
+  AbstractEntity,
+} from 'src/common/entities/entity.abstract';
 import { ErrorEnum } from 'src/common/errors/code.error';
 import { PrismaErrorTraductor } from 'src/common/errors/prisma-traductor.error';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -12,6 +15,11 @@ import {
   CreateAccountInputDto,
   UpdateAccountInputDto,
 } from '../inputs/account.input';
+import {
+  AccountPaginationDto,
+  AccountSortInputDto,
+  AccountWhereInputDto,
+} from '../inputs/filters-account.input';
 
 @ObjectType()
 export class AccountEntity extends AbstractEntity {
@@ -126,4 +134,39 @@ export class AccountEntity extends AbstractEntity {
       );
     }
   }
+}
+
+@ObjectType()
+export class AccountArrayEntity extends AbstractArrayEntity {
+  @Field(() => [AccountEntity])
+  data: Account.DTO[];
+
+  constructor(private readonly prisma: PrismaService) {
+    super();
+  }
+
+  get = async (
+    where?: AccountWhereInputDto,
+    sort?: AccountSortInputDto,
+    pagination?: AccountPaginationDto,
+  ): Promise<AccountArrayEntity> => {
+    try {
+      this.data = await this.prisma.account.findMany({
+        where, // : this.getWhere(where),
+        orderBy: sort,
+        skip: pagination?.skip,
+        take: pagination?.take,
+        cursor: pagination?.cursor,
+      });
+      this.count = this.data.length;
+      this.total = await this.prisma.account.count({
+        where, // : this.getWhere(where),
+      });
+      return this;
+    } catch (error) {
+      new PrismaErrorTraductor(error, AccountEntity.name).throwError(
+        ErrorEnum.FIND_ACCOUNT_ERROR,
+      );
+    }
+  };
 }
