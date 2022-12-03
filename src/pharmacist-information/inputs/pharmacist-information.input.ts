@@ -87,10 +87,10 @@ export class PharmacistInformationSortInputDto extends GetManyCommonSortDto {
 
 @InputType()
 export class PharmacistInformationPaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field({ nullable: true })
-  @IsNotNull()
-  @IsNullIfOtherIsDefined()
-  sectionCode?: string;
+  // @Field({ nullable: true })
+  // @IsNotNull()
+  // @IsNullIfOtherIsDefined()
+  // sectionCode?: string;
 }
 
 @InputType()

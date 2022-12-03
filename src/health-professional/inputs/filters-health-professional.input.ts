@@ -109,13 +109,12 @@ export class HealthProfessionalSortInputDto extends GetManyCommonSortDto {
 
 @InputType()
 export class HealthProfessionalPaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field({ nullable: true })
-  @IsNullIfOtherIsDefined()
-  PPIdentifier?: string;
-
-  @Field({ nullable: true })
-  @IsNullIfOtherIsDefined()
-  nationalPPIdentifier?: string;
+  // @Field({ nullable: true })
+  // @IsNullIfOtherIsDefined()
+  // PPIdentifier?: string;
+  // @Field({ nullable: true })
+  // @IsNullIfOtherIsDefined()
+  // nationalPPIdentifier?: string;
 }
 
 @InputType()

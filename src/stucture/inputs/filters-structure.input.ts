@@ -92,9 +92,9 @@ export class StructureSortInputDto extends GetManyCommonSortDto {
 
 @InputType()
 export class StructurePaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field({ nullable: true })
-  @IsNullIfOtherIsDefined()
-  SIRET?: string;
+  // @Field({ nullable: true })
+  // @IsNullIfOtherIsDefined()
+  // SIRET?: string;
 }
 
 @InputType()

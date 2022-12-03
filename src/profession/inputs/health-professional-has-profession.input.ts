@@ -100,12 +100,12 @@ export class HealthProfessionalHasProfessionSortInputDto extends GetManyCommonSo
 
 @InputType()
 export class HealthProfessionalHasProfessionPaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field(() => UniqueHealthProfessionalId_professionIdInputDto, {
-    nullable: true,
-  })
-  @IsNotNull()
-  @IsNullIfOtherIsDefined()
-  healthProfessionalId_professionId?: UniqueHealthProfessionalId_professionIdInputDto;
+  // @Field(() => UniqueHealthProfessionalId_professionIdInputDto, {
+  //   nullable: true,
+  // })
+  // @IsNotNull()
+  // @IsNullIfOtherIsDefined()
+  // healthProfessionalId_professionId?: UniqueHealthProfessionalId_professionIdInputDto;
 }
 
 @InputType()

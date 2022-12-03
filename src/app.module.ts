@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
+import { ExecutionContext, Injectable, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { AccountModule } from './account/account.module';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GqlExecutionContext, GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { join } from 'path';
@@ -22,14 +22,10 @@ import { UpdateModule } from './update/update.module';
     BitfieldManagerModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      debug: true,
+      debug: false,
       playground: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-      // cors: {
-      //   origin: process.env.FRONT_CORS,
-      //   credentials: true,
-      // },
       context: ({ req }) => ({ ...req }),
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       formatError: (error) => {

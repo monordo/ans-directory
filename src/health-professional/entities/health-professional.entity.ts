@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, OmitType } from '@nestjs/graphql';
 import { Prisma, HealthProfessional as PrismaObject } from '@prisma/client';
 
 import * as _ from 'lodash';
@@ -228,19 +228,19 @@ export class HealthProfessionalEntity extends AbstractEntity {
 
 @ObjectType()
 export class HealthProfessionalArrayEntity extends AbstractArrayEntity {
-  @Field(() => [HealthProfessionalEntity])
+  @Field(() => [
+    OmitType(HealthProfessionalEntity, [
+      'knowHow',
+      'professions',
+      'pharinformations',
+      'structures',
+    ]),
+  ])
   data: HealthProfessional.DTO[];
 
   constructor(private readonly prisma: PrismaService) {
     super();
   }
-
-  // getWhere = (
-  //   where?: HealthProfessionalWhereInputDto,
-  // ): Prisma.HealthProfessionalWhereInput => ({
-  //   ...where,
-  //   id: where?.id ? { in: where.id } : undefined,
-  // });
 
   get = async (
     where?: HealthProfessionalWhereInputDto,

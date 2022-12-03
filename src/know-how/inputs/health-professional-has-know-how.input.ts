@@ -89,11 +89,10 @@ export class HealthProfessionalHasKnowHowSortInputDto extends GetManyCommonSortD
 
 @InputType()
 export class HealthProfessionalHasKnowHowPaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field()
-  healthProfessionalId: string;
-
-  @Field()
-  knowHowId: string;
+  // @Field()
+  // healthProfessionalId: string;
+  // @Field()
+  // knowHowId: string;
 }
 
 @InputType()

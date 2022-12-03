@@ -4,6 +4,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { ErrorEnum } from './common/errors/code.error';
 import { throwError } from './common/errors/utils.error';
@@ -36,6 +37,7 @@ async function bootstrap() {
     logger: ['error', 'warn', 'debug', 'log', 'verbose'],
   });
   app.useGlobalPipes(new CustomValidationPipe());
+  app.use(helmet());
   await app.listen(3000);
 }
 bootstrap();

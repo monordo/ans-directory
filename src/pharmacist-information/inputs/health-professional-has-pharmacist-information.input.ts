@@ -100,11 +100,10 @@ export class HealthProfessionalHasPharmacistInformationSortInputDto extends GetM
 
 @InputType()
 export class HealthProfessionalHasPharmacistInformationPaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field()
-  healthProfessionalId: string;
-
-  @Field()
-  pharmacistInformationId: string;
+  // @Field()
+  // healthProfessionalId: string;
+  // @Field()
+  // pharmacistInformationId: string;
 }
 
 @InputType()

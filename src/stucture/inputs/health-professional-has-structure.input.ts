@@ -127,12 +127,12 @@ export class HealthProfessionalHasStructureSortInputDto extends GetManyCommonSor
 
 @InputType()
 export class HealthProfessionalHasStructurePaginationCursorDto extends GetManyCommonPaginationCursorDto {
-  @Field(() => UniqueHealthProfessionalId_structureId_practiceIdInputDto, {
-    nullable: true,
-  })
-  @IsNotNull()
-  @IsNullIfOtherIsDefined()
-  healthProfessionalId_structureId_practiceId?: UniqueHealthProfessionalId_structureId_practiceIdInputDto;
+  // @Field(() => UniqueHealthProfessionalId_structureId_practiceIdInputDto, {
+  //   nullable: true,
+  // })
+  // @IsNotNull()
+  // @IsNullIfOtherIsDefined()
+  // healthProfessionalId_structureId_practiceId?: UniqueHealthProfessionalId_structureId_practiceIdInputDto;
 }
 
 @InputType()
