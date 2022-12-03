@@ -69,6 +69,13 @@ export enum ErrorEnum {
   FIND_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR = 'I-1904',
   DELETE_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR = 'I-1905',
   HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_WITH_SAME_DATA = 'I-1906',
+  //
+  HEALTH_PROFESSIONAL_HAS_STRUCTURE_NOT_FOUND = 'I-2001',
+  CREATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR = 'I-2002',
+  UPDATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR = 'I-2003',
+  FIND_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR = 'I-2004',
+  DELETE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR = 'I-2005',
+  HEALTH_PROFESSIONAL_HAS_STRUCTURE_WITH_SAME_DATA = 'I-2006',
 }
 
 export const errorToMessageDefinition = {
@@ -189,6 +196,19 @@ export const errorToMessageDefinition = {
     'An error occurred while deleting health professional has pharmacist information',
   [ErrorEnum.HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_WITH_SAME_DATA]:
     'A health professional has pharmacist information with the same data already exists',
+  //
+  [ErrorEnum.HEALTH_PROFESSIONAL_HAS_STRUCTURE_NOT_FOUND]:
+    'Health professional has structure not found',
+  [ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR]:
+    'An error as occurred during health professional has structure creation',
+  [ErrorEnum.UPDATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR]:
+    'An error as occurred during health professional has structure updating',
+  [ErrorEnum.FIND_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR]:
+    'An error occurred while retrieving health professional has structures',
+  [ErrorEnum.DELETE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR]:
+    'An error occurred while deleting health professional has structure',
+  [ErrorEnum.HEALTH_PROFESSIONAL_HAS_STRUCTURE_WITH_SAME_DATA]:
+    'A health professional has structure with the same data already exists',
 };
 
 export const errorToMessage = (error: ErrorEnum): string => {

@@ -5,7 +5,6 @@ import {
 } from '@prisma/client';
 
 import * as _ from 'lodash';
-import { omit } from 'lodash';
 import { EntityInitArgs } from 'src/common/dtos/entity.dto';
 import {
   AbstractArrayEntity,
@@ -13,8 +12,6 @@ import {
 } from 'src/common/entities/entity.abstract';
 import { ErrorEnum } from 'src/common/errors/code.error';
 import { PrismaErrorTraductor } from 'src/common/errors/prisma-traductor.error';
-import { HealthProfessional } from 'src/health-professional/dtos/health-professional.dto';
-import { HealthProfessionalEntity } from 'src/health-professional/entities/health-professional.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { HealthProfessionalHasStructure } from '../dtos/health-professional-has-structure.dto';
 import { Practice } from '../dtos/practice.dto';
@@ -102,7 +99,7 @@ export class HealthProfessionalHasStructureEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.HEALTH_PROFESSIONAL_HAS_KNOW_HOW_NOT_FOUND,
+        ErrorEnum.HEALTH_PROFESSIONAL_HAS_STRUCTURE_NOT_FOUND,
       );
     }
   }
@@ -135,7 +132,7 @@ export class HealthProfessionalHasStructureEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
+        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR,
       );
     }
   }
@@ -186,7 +183,7 @@ export class HealthProfessionalHasStructureEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
+        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR,
       );
     }
   }
@@ -230,7 +227,7 @@ export class HealthProfessionalHasStructureEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.UPDATE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
+        ErrorEnum.UPDATE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR,
       );
     }
   }
@@ -247,7 +244,7 @@ export class HealthProfessionalHasStructureEntity extends AbstractEntity {
       return this.setData(rslt);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.DELETE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
+        ErrorEnum.DELETE_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR,
       );
     }
   }
@@ -291,7 +288,7 @@ export class HealthProfessionalHasStructureArrayEntity extends AbstractArrayEnti
       new PrismaErrorTraductor(
         error,
         HealthProfessionalHasStructureEntity.name,
-      ).throwError(ErrorEnum.FIND_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR);
+      ).throwError(ErrorEnum.FIND_HEALTH_PROFESSIONAL_HAS_STRUCTURE_ERROR);
     }
   };
 }

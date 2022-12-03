@@ -77,7 +77,7 @@ export class HealthProfessionalHasKnowHowEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_NOT_FOUND,
+        ErrorEnum.HEALTH_PROFESSIONAL_HAS_KNOW_HOW_NOT_FOUND,
       );
     }
   }
@@ -97,7 +97,7 @@ export class HealthProfessionalHasKnowHowEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR,
+        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
       );
     }
   }
@@ -127,7 +127,7 @@ export class HealthProfessionalHasKnowHowEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR,
+        ErrorEnum.CREATE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
       );
     }
   }
@@ -151,7 +151,7 @@ export class HealthProfessionalHasKnowHowEntity extends AbstractEntity {
       return this.setData(object);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.UPDATE_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR,
+        ErrorEnum.UPDATE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
       );
     }
   }
@@ -168,7 +168,7 @@ export class HealthProfessionalHasKnowHowEntity extends AbstractEntity {
       return this.setData(rslt);
     } catch (error) {
       new PrismaErrorTraductor(error, this.entityName).throwError(
-        ErrorEnum.DELETE_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR,
+        ErrorEnum.DELETE_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR,
       );
     }
   }
@@ -205,9 +205,7 @@ export class HealthProfessionalHasKnowHowArrayEntity extends AbstractArrayEntity
       new PrismaErrorTraductor(
         error,
         HealthProfessionalHasKnowHowEntity.name,
-      ).throwError(
-        ErrorEnum.FIND_HEALTH_PROFESSIONAL_HAS_PHARMACIST_INFORMATION_ERROR,
-      );
+      ).throwError(ErrorEnum.FIND_HEALTH_PROFESSIONAL_HAS_KNOW_HOW_ERROR);
     }
   };
 }
