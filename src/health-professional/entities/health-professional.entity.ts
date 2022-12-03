@@ -225,17 +225,15 @@ export class HealthProfessionalEntity extends AbstractEntity {
     }
   }
 }
+@ObjectType()
+export class LightHealthProfessionalEntity extends OmitType(
+  HealthProfessionalEntity,
+  ['knowHow', 'professions', 'pharinformations', 'structures'],
+) {}
 
 @ObjectType()
 export class HealthProfessionalArrayEntity extends AbstractArrayEntity {
-  @Field(() => [
-    OmitType(HealthProfessionalEntity, [
-      'knowHow',
-      'professions',
-      'pharinformations',
-      'structures',
-    ]),
-  ])
+  @Field(() => [LightHealthProfessionalEntity])
   data: HealthProfessional.DTO[];
 
   constructor(private readonly prisma: PrismaService) {
