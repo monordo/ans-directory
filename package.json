@@ -34,7 +34,7 @@
     "@types/lodash": "^4.14.190",
     "apollo-server-express": "^3.11.1",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
+    "class-validator": "^0.14.0",
     "cli-progress": "^3.11.2",
     "cuid": "^2.1.8",
     "graphql": "^16.6.0",
