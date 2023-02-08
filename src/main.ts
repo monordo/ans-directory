@@ -37,7 +37,7 @@ async function bootstrap() {
     logger: ['error', 'warn', 'debug', 'log', 'verbose'],
   });
   app.useGlobalPipes(new CustomValidationPipe());
-  app.use(helmet());
+  // app.use(helmet());
   await app.listen(3000);
 }
 bootstrap();
