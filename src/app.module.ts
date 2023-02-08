@@ -26,6 +26,7 @@ import { UpdateModule } from './update/update.module';
       playground: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
+      introspection: true,
       context: ({ req }) => ({ ...req }),
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       formatError: (error) => {
