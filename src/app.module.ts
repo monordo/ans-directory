@@ -23,11 +23,11 @@ import { UpdateModule } from './update/update.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       debug: false,
-      playground: true,
+      playground: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       context: ({ req }) => ({ ...req }),
-      // plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
       formatError: (error) => {
         const code = error.extensions?.code || 'SERVER_ERROR';
         const graphQLFormattedError = {
