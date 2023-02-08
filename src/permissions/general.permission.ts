@@ -230,8 +230,6 @@ export class GeneralPermissions extends AbstractPermissionModel {
   static readonly ADMIN: MixedPermission;
 
   @MixedPerm([
-    GeneralPermissions.GET_MANY_ACCOUNT,
-    GeneralPermissions.GET_ACCOUNT,
     GeneralPermissions.GET_MANY_HEALTH_PROFESSIONAL,
     GeneralPermissions.GET_HEALTH_PROFESSIONAL,
     GeneralPermissions.GET_MANY_KNOW_HOW,
